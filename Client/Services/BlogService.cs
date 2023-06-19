@@ -1,24 +1,27 @@
 ﻿using System;
+using System.Net.Http.Json;
 using BlazorBlog.Shared;
 
 namespace BlazorBlog.Client.Services
 {
 	public class BlogService : IBlogService
 	{
-        public List<BlogPost> Posts { get; set; } = new List<BlogPost>()
-        {
-            new BlogPost { Url = "new-tutorial", Title = "A New Tutorial about Blazor", Description = "This is a new tutorial, showing you how to build a blog with Blazor", Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." },
-            new BlogPost { Url = "first-post", Title = "My First Blog Post", Description = "Hi! This is my new shiny blog. Enjoy!", Content = "This is my beautiful short blog post. Isn't it nice? :)" }
-        };
+        private readonly HttpClient _http;
 
-        public List<BlogPost> GetBlogPosts()
+        public BlogService(HttpClient http)
         {
-            return Posts;
+            _http = http;            
         }
 
-        public BlogPost GetBlogPostByUrl(string url)
+        public async Task<List<BlogPost>> GetBlogPosts()
         {
-            return Posts.FirstOrDefault(p => p.Url.ToLower().Equals(url.ToLower()));
+            return await _http.GetFromJsonAsync<List<BlogPost>>("api/Blog");
+        }
+
+        public async Task<BlogPost> GetBlogPostByUrl(string url)
+        {
+            var post = await _http.GetFromJsonAsync<BlogPost>($"api/Blog/{url}");
+            return post;
         }
 
         public BlogPost CreateNewBlogPost(BlogPost request)
