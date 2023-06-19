@@ -21,4 +21,10 @@
     <ProjectReference Include="..\Shared\BlazorBlog.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
 </Project>
