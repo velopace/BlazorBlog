@@ -7,8 +7,8 @@ namespace BlazorBlog.Client.Services
 	{
         public List<BlogPost> Posts { get; set; } = new List<BlogPost>()
         {
-            new BlogPost { Url = "new-tutorial", Title = "A New Tutorial about Blazor", Description = "This is a new tutorial, showing you how to build a blog with Blazor" },
-            new BlogPost { Url = "first-post", Title = "My First Blog Post", Description = "Hi! This is my new shiny blog. Enjoy!" }
+            new BlogPost { Url = "new-tutorial", Title = "A New Tutorial about Blazor", Description = "This is a new tutorial, showing you how to build a blog with Blazor", Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." },
+            new BlogPost { Url = "first-post", Title = "My First Blog Post", Description = "Hi! This is my new shiny blog. Enjoy!", Content = "This is my beautiful short blog post. Isn't it nice? :)" }
         };
 
         public List<BlogPost> GetBlogPosts()
@@ -16,12 +16,12 @@ namespace BlazorBlog.Client.Services
             return Posts;
         }
 
-        public Task<BlogPost> GetBlogPostByUrl(string url)
+        public BlogPost GetBlogPostByUrl(string url)
         {
-            throw new NotImplementedException();
+            return Posts.FirstOrDefault(p => p.Url.ToLower().Equals(url.ToLower()));
         }
 
-        public Task<BlogPost> CreateNewBlogPost(BlogPost request)
+        public BlogPost CreateNewBlogPost(BlogPost request)
         {
             throw new NotImplementedException();
         }
