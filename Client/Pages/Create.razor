@@ -1,6 +1,7 @@
 ﻿@page "/create"
 @inject BlazorBlog.Client.Services.IBlogService BlockService
 @inject NavigationManager NavigationManager
+@using Markdig
 
 <h3>Create a New Blog Post</h3>
 
@@ -26,7 +27,11 @@
     </div>
     <div class="form-group">
         <label for="content">Content</label>
-        <InputTextArea id="content" @bind-Value="newBlogPost.Content" class="form-control" />
+        <BlogTextArea id="content" @bind-Value="newBlogPost.Content" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="contentPreview">Content Preview</label>
+        <div id="contentPreview" style="height: 100%;" class="form-control">@((MarkupString)Markdown.ToHtml(newBlogPost.Content))</div>
     </div>
     <div class="form-group">
         <label for="author">Author</label>
