@@ -10,9 +10,9 @@ namespace BlazorBlog.Shared
 		[Required, StringLength(20, ErrorMessage = "Please use only 20 characters.")]
 		public string Url { get; set; }
 
-        public string Image { get; set; }
+		public string? Image { get; set; }
 
-        [Required]
+		[Required]
 		public string Title { get; set; }
 
 		public string Content { get; set; }

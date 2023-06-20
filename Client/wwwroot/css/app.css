@@ -100,3 +100,18 @@ a, .btn-link {
         content: var(--blazor-load-percentage-text, "Loading");
     }
 
+.card-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.post-img {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
