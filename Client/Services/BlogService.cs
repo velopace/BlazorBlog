@@ -33,9 +33,10 @@ namespace BlazorBlog.Client.Services
             }
         }
 
-        public BlogPost CreateNewBlogPost(BlogPost request)
+        public async Task<BlogPost> CreateNewBlogPost(BlogPost request)
         {
-            throw new NotImplementedException();
+            var result = await _http.PostAsJsonAsync("api/Blog", request);
+            return await result.Content.ReadFromJsonAsync<BlogPost>();
         }
 
     }

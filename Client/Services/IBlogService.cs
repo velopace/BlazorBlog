@@ -9,7 +9,7 @@ namespace BlazorBlog.Client.Services
 
         Task<BlogPost> GetBlogPostByUrl(string url);
 
-        BlogPost CreateNewBlogPost(BlogPost request);
+        Task<BlogPost> CreateNewBlogPost(BlogPost request);
     }
 }
 
